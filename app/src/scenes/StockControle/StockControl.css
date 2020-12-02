@@ -1,19 +1,19 @@
-.App {
+.StockControl {
   text-align: center;
 }
 
-.App-logo {
+.StockControl-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .StockControl-logo {
+    animation: StockControl-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+.StockControl-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,11 +24,11 @@
   color: white;
 }
 
-.App-link {
+.StockControl-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+@keyframes StockControl-logo-spin {
   from {
     transform: rotate(0deg);
   }
