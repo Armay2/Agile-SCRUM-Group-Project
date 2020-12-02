@@ -4,6 +4,9 @@ import logo from '../../assets/images/logo.svg';
 import './CorrectChange.css';
 
 function CorrectChange() {
+  const [state, dispatch] = useStore();
+
+  console.log(state);
   return (
     <div className="CorrectChange">
       <header className="CorrectChange-header">

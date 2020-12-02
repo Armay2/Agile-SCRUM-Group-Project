@@ -4,6 +4,9 @@ import logo from '../../assets/images/logo.svg';
 import './ShoppingBasket.css';
 
 function ShoppingBasket() {
+  const [state, dispatch] = useStore();
+
+  console.log(state);
   return (
     <div className="ShoppingBasket">
       <header className="ShoppingBasket-header">

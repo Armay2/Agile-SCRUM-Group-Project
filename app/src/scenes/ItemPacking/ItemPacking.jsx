@@ -4,6 +4,9 @@ import logo from '../../assets/images/logo.svg';
 import './ItemPacking.css';
 
 function ItemPacking() {
+  const [state, dispatch] = useStore();
+
+  console.log(state);
   return (
     <div className="ItemPacking">
       <header className="ItemPacking-header">

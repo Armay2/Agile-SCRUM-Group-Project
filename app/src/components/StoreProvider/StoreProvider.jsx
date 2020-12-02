@@ -2,7 +2,7 @@
  * @ Author: Alpaga
  * @ Create Time: 2020-06-11 19:45:04
  * @ Modified by: Alpaga
- * @ Modified time: 2020-07-01 00:45:08
+ * @ Modified time: 2020-12-02 12:12:43
  */
 
 import React, { createContext, useContext, useReducer } from 'react';
@@ -18,7 +18,7 @@ const StoreProvider = ({ reducer, initialState, children }) => (
 
 StoreProvider.propTypes = {
   reducer: PropTypes.func.isRequired,
-  initialState: PropTypes.objectOf(PropTypes.object).isRequired,
+  initialState: PropTypes.objectOf(PropTypes.array).isRequired,
   children: PropTypes.node.isRequired,
 };
 
