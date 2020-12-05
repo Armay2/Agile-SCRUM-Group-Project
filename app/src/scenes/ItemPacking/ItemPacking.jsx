@@ -3,6 +3,8 @@ import React from 'react';
 import logo from '../../assets/images/logo.svg';
 import './ItemPacking.css';
 
+import {useStore} from '../../components/StoreProvider/StoreProvider.jsx';
+
 function ItemPacking() {
   const [state, dispatch] = useStore();
 

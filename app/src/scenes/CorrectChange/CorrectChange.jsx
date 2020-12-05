@@ -3,6 +3,8 @@ import React from 'react';
 import logo from '../../assets/images/logo.svg';
 import './CorrectChange.css';
 
+import {useStore} from '../../components/StoreProvider/StoreProvider.jsx';
+
 function CorrectChange() {
   const [state, dispatch] = useStore();
 

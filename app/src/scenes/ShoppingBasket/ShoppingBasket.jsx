@@ -3,6 +3,8 @@ import React from 'react';
 import logo from '../../assets/images/logo.svg';
 import './ShoppingBasket.css';
 
+import {useStore} from '../../components/StoreProvider/StoreProvider.jsx';
+
 function ShoppingBasket() {
   const [state, dispatch] = useStore();
 
