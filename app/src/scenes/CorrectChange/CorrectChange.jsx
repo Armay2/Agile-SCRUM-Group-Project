@@ -1,22 +1,29 @@
 import React from 'react';
 
-import logo from '../../assets/images/logo.svg';
 import './CorrectChange.css';
 
-import {useStore} from '../../components/StoreProvider/StoreProvider.jsx';
+import { useForm } from 'react-hook-form';
 
 function CorrectChange() {
-  const [state, dispatch] = useStore();
+  const { register, handleSubmit } = useForm();
 
-  console.log(state);
+  const onSubmit = (data) => {
+    const nb = 20 - data.money;
+    alert("I give you " + nb + "€.");
+  }
+
   return (
     <div className="CorrectChange">
-      <header className="CorrectChange-header">
-        <img src={logo} className="CorrectChange-logo" alt="logo" />
-        <p>
-          Correct Change Calculator
-        </p>
-      </header>
+      <br/><br/><br/><br/>
+      <label>You have to pay 20€.</label>
+      <br/><br/><br/>
+        <form onSubmit = {handleSubmit(onSubmit)}>
+          <label>How much you give ?</label><br/><br/>
+          <input type= "number" step= "0.01" name= "money" ref= {register} placeholder= "Enter money" /><br/>
+          <input type= "submit" value= "Pay"/>
+          <input type= "reset" value= "Clear"/>
+        </form>
+      <br/><br/>
     </div>
   );
 }
