@@ -6,22 +6,22 @@ import Price from './price';
 import './item.css';
 
 function Item(props) {
-  const { name, price, desc, VAT, onClick } = props;
+  const item = props.item;
 
   return (
-    <div className="item">
+    <div className="item" style={{backgroundColor: item.select ? "black" : "white"}}>
       <span key="All">
         <button
         type="button"
         onClick={() => {
-          onClick(price);
+          props.onClick(item.price);
         }}>
-        Add
+        {item.select ? "Remove" : "Add"}
       </button>
       </span>
-      <h1>{name}</h1>
-      <Price value={price} /> (VAT: {VAT}%)
-      <p>{desc}</p>
+      <h1>{item.name}</h1>
+      <Price value={item.price} /> (VAT: {item.VAT}%)
+      <p>{item.desc}</p>
     </div>
   );
 }
@@ -33,3 +33,6 @@ Item.propTypes = {
 };
 
 export default Item;
+
+
+

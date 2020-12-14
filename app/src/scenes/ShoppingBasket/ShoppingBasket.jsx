@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 import Button from './components/button';
 import Item from './components/item';
-import inventory, { categories } from './inventory';
+import { categories } from './inventory';
 
 const inventory = [{
   id: 12,
   name: 'Y-Solowarm',
-  description: 'Mandatory stable internet solution',
-  price: '50',
-  VAT: '20',
+  descripton: 'Mandatory stable internet solution',
+  price: 50,
+  VAT: 20,
   category: 'Luxury',
   select: false,
 },
@@ -17,33 +17,40 @@ const inventory = [{
   id: 27,
   name: 'Bitchip',
   description: 'Team-oriented optimal hub',
-  price: '30',
-  VAT: '10',
+  price: 30,
+  VAT: 10,
   category: 'Essential',
+  select: false,
 },
 {
   id: 91,
   name: 'Flexidy',
   description: 'Profound uniform database',
-  price: '20',
-  VAT: '5',
+  price: 20,
+  VAT: 5,
   category: 'Gift',
+  select: false,
 },
 {
   id: 54,
   name: 'Tres-Zap',
   description: 'Programmable eco-centric budgetary management',
-  price: '50',
-  VAT: '20',
+  price: 50,
+  VAT: 20,
   category: 'Luxury',
+  select: false,
 },
 ];
 
 class ShoppingBasket extends Component {
-  state = {
-    currentCat: [],
-    item: inventory,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentCat: [],
+      item: inventory,
+      totalPrice: 0
+    }
+  }
 
   getCategories() {
     return categories.map(cat => (
@@ -58,27 +65,28 @@ class ShoppingBasket extends Component {
   }
 
   getInventory() {
-    const { currentCat } = this.state;
+      return this.state.item.map((item, index) => {
+        return this.state.currentCat.some((cat) => (cat === item.category)) || this.state.currentCat.length === 0 ? 
+          <Item key={index} item={item} onClick={(price) => {
+            var stateCopy = Object.assign({}, this.state);
+            stateCopy.item[index].select = !stateCopy.item[index].select;
+            this.setState(stateCopy);
 
-    return inventory
-      .filter((item) => {
-        let selected = false;
-        if (currentCat.length === 0) {
-          selected = true;
-        } else {
-          currentCat.forEach((cat) => {
-            if (cat === item.category) {
-              selected = true;
+            if (stateCopy.item[index].select) {
+              this.setState({
+                ...this.state,
+                totalPrice: this.state.totalPrice + (price + (price * (stateCopy.item[index].VAT / 100)))
+              })
+              // Add to price
+            } else {
+              this.setState({
+                ...this.state,
+                totalPrice: this.state.totalPrice - (price + (price * (stateCopy.item[index].VAT / 100)))
+              })
+              // To remove
             }
-          });
-        }
-        return selected;
-      })
-      .map(({
-        id, name, price, description, VAT,
-      }) => (
-        <Item key={id} name={name} price={price} desc={description} VAT={VAT} />
-      ));
+          }}/> : null;
+      });
   }
 
   buttonClasses(cat) {
@@ -119,6 +127,7 @@ class ShoppingBasket extends Component {
     }
 
     this.setState({
+      ...this.state,
       currentCat,
     });
   }
@@ -140,6 +149,7 @@ class ShoppingBasket extends Component {
         </div>
 
         <div>{this.getInventory()}</div>
+        <div>{this.state.totalPrice}</div>
       </div>
     );
   }
