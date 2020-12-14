@@ -18,13 +18,9 @@
     "react-native-cli": "^2.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-<<<<<<< HEAD
     "uuid": "^8.3.2",
-    "web-vitals": "^0.2.4"
-=======
     "web-vitals": "^0.2.4",
     "react-hook-form": "*"
->>>>>>> c3c9fd80c6e759f8d0bb8db07543565a2af121b5
   },
   "scripts": {
     "start": "react-scripts start",
