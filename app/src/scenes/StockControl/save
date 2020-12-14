@@ -1,0 +1,98 @@
+import React, { useReducer, useState } from 'react';
+import './StockControl.css';
+
+let item = {
+	name: "",
+	itemType: "",
+	expDate: ""
+}
+
+var item_list = [];
+
+const formReducer = (state, event) => {
+	if(event.reset) {
+		return {
+		  itemType: '',
+		  expDate: 0,
+		  name: '',
+		}
+	  }
+	return {
+	  ...state,
+	  [event.name]: event.value
+	}
+}
+
+class StockControl extends React.Component {
+	const [formData, setFormData] = useReducer(formReducer, {});
+	const [submitting, setSubmitting] = useState(false);
+	const handleSubmit = event => {
+		event.preventDefault();
+		setSubmitting(true);
+		var citem = {
+			name: formData.name,
+			itemType: formData.itemType,
+			expDate: formData.expDate
+		}
+		item_list.push(citem);
+		setTimeout(() => {
+			setFormData({
+				reset: true
+			  })
+			setSubmitting(false);
+		}, 1000)
+	}
+
+	const handleChange = event => {
+		setFormData({
+		  name: event.target.name,
+		  value: event.target.value,
+		});
+	}
+
+	render () {
+		<div className="wrapper">
+		<h1>Stock Control</h1>
+		{submitting &&
+       <div>You are submitting the following:
+         <ul>
+           {Object.entries(formData).map(([name, value]) => (
+             <li key={name}><strong>{name}</strong>:{value.toString()}</li>
+           ))}
+         </ul></div>
+     	}
+		<form onSubmit={handleSubmit}>
+		<fieldset>
+			<label>
+				<p>Name</p>
+				<input name="name" onChange={handleChange} value={formData.name}/>
+			</label>
+			<label>
+			<p>itemType</p>
+			<select name="type" onChange={handleChange} value={formData.itemType}>
+				<option value="">--Please choose an option--</option>
+				<option value="luxury">Luxury</option>
+				<option value="essential">Essential</option>
+				<option value="gift">Gift</option>
+			</select>
+			</label>
+			<label>
+			<p>Expiration Date</p>
+			<input type="date" name="expDate" onChange={handleChange} value={formData.expDate}/>
+			</label>
+			<label>
+				<p></p>
+				<button type="submit">Add Item</button>
+			</label>
+		</fieldset>
+		</form>
+		<fieldset>
+			<label>
+				
+			</label>
+		</fieldset>
+		</div>
+	)
+}
+
+export default StockControl;

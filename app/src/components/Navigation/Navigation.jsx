@@ -13,7 +13,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import StockControl from '../../scenes/StockControle/StockControl.jsx';
+import StockControl from '../../scenes/StockControl/StockControl.jsx';
 import CorrectChange from '../../scenes/CorrectChange/CorrectChange.jsx';
 import ItemPacking from '../../scenes/ItemPacking/ItemPacking.jsx';
 import ShoppingBasket from '../../scenes/ShoppingBasket/ShoppingBasket.jsx';
